@@ -1,0 +1,5 @@
+.vscode/
+*.xlsx
+*.sql
+build/
+dist/
