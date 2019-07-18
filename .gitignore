@@ -3,4 +3,4 @@
 *.sql
 build/
 dist/
-test/*.java
+test/*.*
