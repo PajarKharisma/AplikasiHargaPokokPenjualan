@@ -1,9 +1,9 @@
 package Controller;
 
-import DataAccessObject.AlatDao;
+import DataAccessObject.ProdukDao;
 import Master.Controller;
 import Master.Model;
-import Model.Alat;
+import Model.Produk;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -11,36 +11,38 @@ import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import org.json.simple.parser.ParseException;
 
-public class AlatController extends Controller {
+public class ProdukController extends Controller {
 
-    private final AlatDao dao;
+    private final ProdukDao dao;
 
-    public AlatController() throws SQLException, IOException, FileNotFoundException, ParseException {
-        dao = new AlatDao();
+    public ProdukController() throws SQLException, IOException, FileNotFoundException, ParseException {
+        dao = new ProdukDao();
     }
 
     @Override
     public void create(Object... obj) {
-        Model m = new Alat();
-        Alat model = (Alat) m;
-
-        model.setNamaAlat((String) obj[0]);
-        model.setJumlah((int) obj[1]);
-        model.setUmurEkonomis((int) obj[2]);
-
+        Model m = new Produk();
+        Produk model = (Produk) m;
+        
+        model.setNamaProduk((String) obj[0]);
+        model.setJmlProduksi((int) obj[1]);
+        model.setHarga((int) obj[2]);
+        model.setTotal((int) obj[3]);
+        
         dao.create(model);
     }
 
     @Override
     public void update(Object... obj) {
-        Model m = new Alat();
-        Alat model = (Alat) m;
-
-        model.setIdAlat((int) obj[0]);
-        model.setNamaAlat((String) obj[1]);
-        model.setJumlah((int) obj[2]);
-        model.setUmurEkonomis((int) obj[3]);
-
+        Model m = new Produk();
+        Produk model = (Produk) m;
+        
+        model.setIdProduk((int) obj[0]);
+        model.setNamaProduk((String) obj[1]);
+        model.setJmlProduksi((int) obj[2]);
+        model.setHarga((int) obj[3]);
+        model.setTotal((int) obj[4]);
+        
         dao.update(model);
     }
 

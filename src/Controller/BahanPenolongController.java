@@ -56,14 +56,12 @@ public class BahanPenolongController extends Controller{
 
     @Override
     public ArrayList<?> getAllData() {
-        ArrayList<BahanPenolong> list = dao.getAllData();
-        return list;
+        return dao.getAllData();
     }
 
     @Override
     public ArrayList<?> getById(int id) {
-        ArrayList<BahanPenolong> list = dao.getById(id);
-        return list;
+        return dao.getById(id);
     }
 
     @Override

@@ -90,13 +90,13 @@ public class JenisPekerjaanDao extends DataAccessObject {
 
     @Override
     public ArrayList<JenisPekerjaan> getAllData() {
-        String query = "SELECT * jenis_pekerjaan";
+        String query = "SELECT * FROM jenis_pekerjaan";
         return getByParam(query);
     }
 
     @Override
     public ArrayList<JenisPekerjaan> getById(int param) {
-        String query = "SELECT * jenis_pekerjaan WHERE id_jp=" + param;
+        String query = "SELECT * FROM jenis_pekerjaan WHERE id_jp=" + param;
         return getByParam(query);
     }
 
