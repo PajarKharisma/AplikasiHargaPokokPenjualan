@@ -21,27 +21,38 @@ public class ProdukController extends Controller {
 
     @Override
     public void create(Object... obj) {
+        String namaProduk = (String) obj[0];
+        int jumlahProduksi = (int) obj[1];
+        int harga = (int) obj[2];
+        int total = jumlahProduksi * harga;
+        
         Model m = new Produk();
         Produk model = (Produk) m;
         
-        model.setNamaProduk((String) obj[0]);
-        model.setJmlProduksi((int) obj[1]);
-        model.setHarga((int) obj[2]);
-        model.setTotal((int) obj[3]);
+        model.setNamaProduk(namaProduk);
+        model.setJmlProduksi(jumlahProduksi);
+        model.setHarga(harga);
+        model.setTotal(total);
         
         dao.create(model);
     }
 
     @Override
     public void update(Object... obj) {
+        int idProduk = (int) obj[0];
+        String namaProduk = (String) obj[1];
+        int jumlahProduksi = (int) obj[2];
+        int harga = (int) obj[3];
+        int total = jumlahProduksi * harga;
+        
         Model m = new Produk();
         Produk model = (Produk) m;
         
-        model.setIdProduk((int) obj[0]);
-        model.setNamaProduk((String) obj[1]);
-        model.setJmlProduksi((int) obj[2]);
-        model.setHarga((int) obj[3]);
-        model.setTotal((int) obj[4]);
+        model.setIdProduk(idProduk);
+        model.setNamaProduk(namaProduk);
+        model.setJmlProduksi(jumlahProduksi);
+        model.setHarga(harga);
+        model.setTotal(total);
         
         dao.update(model);
     }

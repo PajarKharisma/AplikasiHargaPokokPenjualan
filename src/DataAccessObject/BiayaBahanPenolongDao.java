@@ -117,7 +117,7 @@ public class BiayaBahanPenolongDao extends DataAccessObject {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public DefaultTableModel viewByParamUmum(String query) {
+    private DefaultTableModel viewByParamUmum(String query) {
         DefaultTableModel mdl = new DefaultTableModel();
         mdl.addColumn("No");
         mdl.addColumn("Id Biaya Bp");
@@ -174,7 +174,7 @@ public class BiayaBahanPenolongDao extends DataAccessObject {
         return viewByParamUmum(query);
     }
 
-    public DefaultTableModel viewDetailByParam(String query) {
+    public DefaultTableModel viewByParamDetail(String query) {
         DefaultTableModel mdl = new DefaultTableModel();
         mdl.addColumn("No");
         mdl.addColumn("Id Biaya Bp");
@@ -222,7 +222,7 @@ public class BiayaBahanPenolongDao extends DataAccessObject {
                         + "INNER JOIN produk p ON bb.id_produk = p.id_produk"
                         + "INNER JOIN bahan_penolong bp ON bb.id_bp = bp.id_bp"
                         + "WHERE p.id_produk=" + idProduk;
-        return viewDetailByParam(query);
+        return viewByParamDetail(query);
     }
 
     public DefaultTableModel viewDetailById(int id) {

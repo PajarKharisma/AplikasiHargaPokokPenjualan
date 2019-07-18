@@ -177,12 +177,55 @@ public class BiayaTenagaKerjaDao extends DataAccessObject {
                         + "FROM biaya_tk bt"
                         + "INNER JOIN jenis_pekerjaan jp ON bt.id_jp = jp.id_jp"
                         + "INNER JOIN produk p ON bt.id_produk = p.id_produk"
-                        + "WHERE p.nama_produk='" + nama + "'"
+                        + "WHERE p.nama_produk LIKE'%" + nama + "%'"
                         + "GROUP BY bt.id_produk";
         return viewByParam(query);
     }
     
-    public DefaultTableModel viewDetail(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private DefaultTableModel viewDetailByParam(String query) {
+        DefaultTableModel mdl = new DefaultTableModel();
+        mdl.addColumn("No");
+        mdl.addColumn("Id");
+        mdl.addColumn("Id Pekerjaan");
+        mdl.addColumn("Nama Pekerjaan");
+        mdl.addColumn("Upah");
+        mdl.addColumn("Jumlah Pekerja");
+        mdl.addColumn("Total");
+        int no = 1;
+        try {
+            st = con.createStatement();
+            rs = st.executeQuery(query);
+            while (rs.next()) {
+                mdl.addRow(new Object[]{
+                    (Object) no,
+                    rs.getInt("id_btk"),
+                    rs.getInt("id_jp"),
+                    rs.getString("nama_pekerjaan"),
+                    rs.getInt("upah"),
+                    rs.getInt("jml_pekerja"),
+                    rs.getInt("total")
+                });
+                no++;
+            }
+        } catch (SQLException e) {
+            System.out.println("#ERROR " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "#Error " + e.getMessage());
+        }
+        return mdl;
+    }
+    
+    public DefaultTableModel viewDetail(int idProduk){
+        String query = "SELECT"
+                        + "bt.id_btk,"
+                        + "jp.id_jp,"
+                        + "jp.nama_pekerjaan,"
+                        + "jp.upah,"
+                        + "bt.jml_pekerja,"
+                        + "bt.total"
+                        + "FROM biaya_tk bt"
+                        + "INNER JOIN jenis_pekerjaan jp ON bt.id_jp = jp.id_jp"
+                        + "INNER JOIN produk p ON bt.id_produk = p.id_produk"
+                        + "WHERE p.id_produk=" + idProduk;
+        return viewDetailByParam(query);
     }
 }
